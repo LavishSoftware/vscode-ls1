@@ -1,0 +1,25 @@
+{
+    "name": "ls1",
+    "displayName": "ls1",
+    "description": "LavishScript Language Support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.31.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ls1",
+            "aliases": ["LavishScript", "ls1"],
+            "extensions": [".iss"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ls1",
+            "scopeName": "source.ls1",
+            "path": "./syntaxes/ls1.tmLanguage.json"
+        }]
+    }
+}
