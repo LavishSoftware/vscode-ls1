@@ -1,8 +1,12 @@
 {
-    "name": "ls1",
-    "displayName": "ls1",
+    "name": "vscode-ls1",
+    "publisher": "LavishSoftware",
+    "author": {"name": "Joe Thaler", "email": "lax@lavishsoft.com"},
+    "repository": {"type": "git","url": "https://github.com/LavishSoftware/vscode-ls1"},
+    "homepage": "https://www.lavishsoft.com",
+    "displayName": "LavishScript",
     "description": "LavishScript Language Support",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "engines": {
         "vscode": "^1.31.0"
     },
