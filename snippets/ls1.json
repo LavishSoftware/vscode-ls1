@@ -1,0 +1,24 @@
+{
+    "Task": {
+        "prefix": "Task",
+        "body": [
+            "\tmethod Task_()",
+            "\t{",
+            "\t\tswitch ${Context.TaskState}",
+            "\t\t{",
+            "\t\tcase Start",
+            "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
+            "\t\t\tbreak",
+            "\t\tcase Continue",
+            "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
+            "\t\t\tbreak",
+            "\t\tcase Stop",
+            "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
+            "\t\t\tbreak",
+            "\t\t}",
+            "\t}",
+            ""
+        ],
+        "description": "A LMAC Task Method definition"
+    }
+}

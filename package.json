@@ -1,8 +1,14 @@
 {
     "name": "vscode-ls1",
     "publisher": "LavishSoftware",
-    "author": {"name": "Joe Thaler", "email": "lax@lavishsoft.com"},
-    "repository": {"type": "git","url": "https://github.com/LavishSoftware/vscode-ls1"},
+    "author": {
+        "name": "Joe Thaler",
+        "email": "lax@lavishsoft.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LavishSoftware/vscode-ls1"
+    },
     "homepage": "https://www.lavishsoft.com",
     "displayName": "LavishScript",
     "description": "LavishScript Language Support",
@@ -14,16 +20,45 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "ls1",
-            "aliases": ["LavishScript", "ls1"],
-            "extensions": [".iss"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "ls1",
-            "scopeName": "source.ls1",
-            "path": "./syntaxes/ls1.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "ls1",
+                "aliases": [
+                    "LavishScript",
+                    "ls1"
+                ],
+                "extensions": [
+                    ".iss"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "ls1",
+                "scopeName": "source.ls1",
+                "path": "./syntaxes/ls1.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "ls1",
+                "path": "./snippets/ls1.json"
+            }
+        ],
+        "jsonValidation": [
+            {
+                "fileMatch": "*.lmacPackage.json",
+                "url": "http://www.lavishsoft.com/schema/lmacPackage.json"
+            },
+            {
+                "fileMatch": "*.lgui2Package.json",
+                "url": "http://www.lavishsoft.com/schema/lgui2Package.json"
+            },
+            {
+                "fileMatch": "isboxer2Module.json",
+                "url": "http://www.lavishsoft.com/schema/isboxer2Module.json"
+            }
+        ]
     }
 }
