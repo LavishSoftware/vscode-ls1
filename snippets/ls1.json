@@ -10,7 +10,7 @@
             "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
             "\t\t\tbreak",
             "\t\tcase Continue",
-            "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
+            ";\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
             "\t\t\tbreak",
             "\t\tcase Stop",
             "\t\t\techo ${Context(type)} ${Context.Timestamp} ${Context.ElapsedMS} ${Context.Task} ${Context.TaskState} instant=${Context.Task.IsInstant} ${Context.Task.Args}",
