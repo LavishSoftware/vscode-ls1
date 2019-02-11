@@ -1,0 +1,10 @@
+{
+    "Task":{
+        "prefix":"Task",
+        "body":["function Task_(taskID, timestamp, elapsed, state)",
+            "\tprint(\"Task_ \",taskID,\" timestamp=\",timestamp,\" elapsed=\",elapsed,\" state=\",state)",
+            "\tStopTask(taskID)",
+        "end"],
+        "description": "A LMAC Task Method definition [vscode-ls1]"
+    }
+}

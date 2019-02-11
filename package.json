@@ -44,6 +44,10 @@
             {
                 "language": "ls1",
                 "path": "./snippets/ls1.json"
+            },
+            {
+                "language": "lua",
+                "path": "./snippets/lua.json"
             }
         ],
         "jsonValidation": [
