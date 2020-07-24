@@ -673,6 +673,29 @@
 				}
 			]
 		},
+		"for-statement": {
+			"begin": "(?=^\\s*\\bfor\\b)",
+			"end": "$",
+			"patterns": [
+				{
+					"match": "^\\s*\\b(for)\\b\\s+(.+)\\s+",
+					"name": "meta.for.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.control.for.ls1"
+						},
+						"2": {
+							"name": "meta.for.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
 		"method-command": {
 			"patterns": [
 				{
