@@ -853,6 +853,9 @@
 		"datasequence-inner": {
 			"patterns": [
 				{
+					"include": "#datasequence"
+				},
+				{
 					"include": "#datasequence-toplevelobject"
 				},
 				{
