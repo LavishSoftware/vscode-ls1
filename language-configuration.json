@@ -24,5 +24,12 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "folding": {
+        "markers": {
+            // Support both #pragma region/endregion (VS C++), and #region/endregion (VS C#) styles
+            "start": "^\\#(pragma )?region\\b",
+            "end": "^\\#(pragma )?endregion\\b"
+        }
+    }
 }
