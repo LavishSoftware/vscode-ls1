@@ -976,6 +976,9 @@
 					"include": "#string"
 				},
 				{
+					"include": "#escape"
+				},
+				{
 					"include": "#comment"
 				},
 				{
@@ -1067,17 +1070,41 @@
 		},
 		"string": {
 			"name": "string.quoted.double.ls1",
-			"begin": "\"",
-			"end": "\"",
+			"begin": "(\")",
+			"end": "(\")",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.cpp"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.cpp"
+				}
+			},
 			"patterns": [
 				{
-					"name": "constant.character.escape.ls1",
-					"match": "\\\\."
+					"include": "#line_continuation_character"
+				},
+				{
+					"include": "#escape"
 				},
 				{
 					"include": "#datasequence"
 				}
 			]
+		},
+		"escape": {
+			"patterns": [
+				{
+				"name": "constant.character.escape.ls1",
+				"match": "\\\\."
+				}
+			]
+		},
+		"line_continuation_character": {
+			"match": "\\\\\\n",
+			"name": "constant.character.escape.line-continuation.cpp"
 		}
 	},
 	"fileTypes": [
