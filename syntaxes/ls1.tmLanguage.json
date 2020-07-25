@@ -118,7 +118,7 @@
 		"type-builtin": {
 			"patterns": [
 				{
-					"match": "\\b(bool|byte|char|decimal|double|float|int|long|object|sbyte|short|string|uint|ulong|ushort|void|dynamic)\\b",
+					"match": "\\b(bool|byte|char|decimal|double|float|int|int64|long|object|sbyte|short|string|uint|ulong|ushort|void|dynamic|filepath|settingsetref|lnavpath|dijkstrapathfinder|lnavregionref)\\b",
 					"captures": {
 						"1": {
 							"name": "keyword.type.ls1"
