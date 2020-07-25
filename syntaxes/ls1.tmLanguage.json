@@ -923,7 +923,61 @@
 			]
 		},
 		"preprocessor": {
-			"patterns": []
+			"patterns": [
+				{
+					"include": "#preprocessor-if"
+				},
+				{
+					"include": "#preprocessor-include"
+				}
+			]
+		},
+		"preprocessor-include": {
+			"patterns": [
+				{
+					"match": "^(#include)\\b\\s+(.+)",
+					"name": "meta.preprocessor.include.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.include.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.include.file.ls1"
+						}
+					}
+				}
+			]
+		},
+		"preprocessor-if": {
+			"begin": "(?=^#if\\b)",
+			"end": "(^#endif)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endif.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^(#if)\\b\\s+(.+)\\s+",
+					"name": "meta.preprocessor.if.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.if.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.if.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				}
+			]
 		},
 		"parenthesized-parameter-list": {
 			"begin": "(\\()",
