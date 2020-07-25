@@ -931,6 +931,9 @@
 					"include": "#preprocessor-include"
 				},
 				{
+					"include": "#preprocessor-define"
+				},
+				{
 					"include": "#preprocessor-macro"
 				}
 			]
@@ -946,6 +949,25 @@
 						},
 						"2": {
 							"name": "meta.preprocessor.include.file.ls1"
+						}
+					}
+				}
+			]
+		},
+		"preprocessor-define": {
+			"patterns": [
+				{
+					"match": "^\\s*(#define)\\s+(.+)\\s+(.+)",
+					"name": "meta.preprocessor.include.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.define.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.define.lhs.ls1"
+						},
+						"3": {
+							"name": "meta.preprocessor.define.rhs.ls1"
 						}
 					}
 				}
