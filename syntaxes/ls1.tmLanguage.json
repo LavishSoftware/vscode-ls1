@@ -938,7 +938,7 @@
 		"preprocessor-include": {
 			"patterns": [
 				{
-					"match": "^(#include)\\b\\s+(.+)",
+					"match": "^\\s*(#include)(optional)?\\b\\s+(.+)",
 					"name": "meta.preprocessor.include.ls1",
 					"captures": {
 						"1": {
@@ -952,8 +952,8 @@
 			]
 		},
 		"preprocessor-if": {
-			"begin": "(?=^#if\\b)",
-			"end": "(^#endif)",
+			"begin": "(?=^\\s*#if\\b)",
+			"end": "(^\\s*#endif)",
 			"endCaptures": {
 				"0": {
 					"name": "keyword.preprocessor.endif.ls1"
@@ -961,7 +961,7 @@
 			},
 			"patterns": [
 				{
-					"match": "^(#if)\\b\\s+(.+)\\s+",
+					"match": "^\\s*(#if)\\b\\s+(.+)\\s+",
 					"name": "meta.preprocessor.if.ls1",
 					"captures": {
 						"1": {
