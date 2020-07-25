@@ -928,6 +928,9 @@
 					"include": "#preprocessor-if"
 				},
 				{
+					"include": "#preprocessor-ifdef"
+				},
+				{
 					"include": "#preprocessor-include"
 				},
 				{
@@ -941,14 +944,19 @@
 		"preprocessor-include": {
 			"patterns": [
 				{
-					"match": "^\\s*(#include)(optional)?\\b\\s+(.+)",
+					"match": "^\\s*(#include|#includeoptional)\\s+(.+)",
 					"name": "meta.preprocessor.include.ls1",
 					"captures": {
 						"1": {
 							"name": "keyword.preprocessor.include.ls1"
 						},
 						"2": {
-							"name": "meta.preprocessor.include.file.ls1"
+							"name": "meta.preprocessor.include.file.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
 						}
 					}
 				}
@@ -957,17 +965,25 @@
 		"preprocessor-define": {
 			"patterns": [
 				{
-					"match": "^\\s*(#define)\\s+(.+)\\s+(.+)",
+					"match": "^\\s*(#define)\\s+([^\\s]+)\\s+(.*)",
 					"name": "meta.preprocessor.include.ls1",
 					"captures": {
 						"1": {
 							"name": "keyword.preprocessor.define.ls1"
 						},
 						"2": {
-							"name": "meta.preprocessor.define.lhs.ls1"
+							"name": "entity.name.function.preprocessor.ls1"
 						},
 						"3": {
-							"name": "meta.preprocessor.define.rhs.ls1"
+							"name": "entity.name.function.call.ls1",
+							"patterns": [
+								{
+									"include": "#statement"
+								},
+								{
+									"include": "#expression"
+								}
+							]
 						}
 					}
 				}
@@ -1001,6 +1017,43 @@
 				},
 				{
 					"include": "#statement"
+				},
+				{
+					"include": "#preprocessor"
+				}
+			]
+		},
+		"preprocessor-ifdef": {
+			"begin": "(?=^\\s*#if(n)?def\\b)",
+			"end": "(^\\s*#endif)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endif.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^\\s*(#if(n)?def)\\s+(.+)",
+					"name": "meta.preprocessor.ifdef.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.ifdef.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.ifdef.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				},
+				{
+					"include": "#preprocessor"
 				}
 			]
 		},
