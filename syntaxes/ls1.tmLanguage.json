@@ -929,6 +929,9 @@
 				},
 				{
 					"include": "#preprocessor-include"
+				},
+				{
+					"include": "#preprocessor-macro"
 				}
 			]
 		},
@@ -966,6 +969,37 @@
 						},
 						"2": {
 							"name": "meta.preprocessor.if.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				}
+			]
+		},
+		"preprocessor-macro": {
+			"begin": "(?=^#macro\\b)",
+			"end": "(^#endmac)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endmac.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^(#macro)\\b\\s+(.+)\\s+",
+					"name": "meta.preprocessor.macro.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.macro.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.macro.expression.ls1",
 							"patterns": [
 								{
 									"include": "#expression"
