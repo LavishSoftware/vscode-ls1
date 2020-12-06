@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "ls1" extension will be documented in this file.
 
+## [0.2.2]
+### Added
+- Support `case` statement
+- agent.json validation
+
 ## [0.2.1 Unreleased]
 ### Added
 - Support both #pragma region/endregion (VS C++), and #region/endregion (VS C#) styles

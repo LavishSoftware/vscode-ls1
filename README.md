@@ -18,6 +18,7 @@ For other editors, use the **syntaxes/ls1.tmLanguage.json** file
 
 ## Release Notes
 
-### 0.1.0
+### 0.2.2
 
-Initial release including syntax higlighting
+*
+
