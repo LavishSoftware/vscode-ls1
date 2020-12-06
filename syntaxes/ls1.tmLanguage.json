@@ -498,6 +498,9 @@
 					"include": "#switch-statement"
 				},
 				{
+					"include": "#case-statement"
+				},
+				{
 					"include": "#return-statement"
 				},
 				{
@@ -627,7 +630,30 @@
 				}
 			]
 		},
-		"switch-statement": {
+		"case-statement": {
+				"begin": "(?=^\\s*\\bcase\\b)",
+				"end": "$",
+				"patterns": [
+					{
+						"match": "^\\s*\\b(case)\\b\\s+(.+)\\s+",
+						"name": "meta.case.ls1",
+						"captures": {
+							"1": {
+								"name": "keyword.control.case.ls1"
+							},
+							"2": {
+								"name": "meta.case.expression.ls1",
+								"patterns": [
+									{
+										"include": "#expression"
+									}
+								]
+							}
+						}
+					}
+				]
+			},		
+			"switch-statement": {
 			"begin": "(?=^\\s*\\bswitch\\b)",
 			"end": "$",
 			"patterns": [
@@ -876,9 +902,6 @@
 		"datasequence-inner": {
 			"patterns": [
 				{
-					"include": "#datasequence"
-				},
-				{
 					"include": "#datasequence-toplevelobject"
 				},
 				{
@@ -892,6 +915,9 @@
 				},
 				{
 					"include": "#datasequence-cast"
+				},
+				{
+					"include": "#datasequence"
 				},
 				{
 					"match": "(\\})",
