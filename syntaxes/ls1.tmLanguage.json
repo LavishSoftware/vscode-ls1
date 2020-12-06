@@ -118,7 +118,7 @@
 		"type-builtin": {
 			"patterns": [
 				{
-					"match": "\\b(bool|byte|char|decimal|double|float|int|long|object|sbyte|short|string|uint|ulong|ushort|void|dynamic)\\b",
+					"match": "\\b(bool|byte|char|decimal|double|float|int|int64|long|object|sbyte|short|string|uint|ulong|ushort|void|dynamic|filepath|settingsetref|lnavpath|dijkstrapathfinder|lnavregionref)\\b",
 					"captures": {
 						"1": {
 							"name": "keyword.type.ls1"
@@ -673,6 +673,29 @@
 				}
 			]
 		},
+		"for-statement": {
+			"begin": "(?=^\\s*\\bfor\\b)",
+			"end": "$",
+			"patterns": [
+				{
+					"match": "^\\s*\\b(for)\\b\\s+(.+)\\s+",
+					"name": "meta.for.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.control.for.ls1"
+						},
+						"2": {
+							"name": "meta.for.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
 		"method-command": {
 			"patterns": [
 				{
@@ -853,6 +876,9 @@
 		"datasequence-inner": {
 			"patterns": [
 				{
+					"include": "#datasequence"
+				},
+				{
 					"include": "#datasequence-toplevelobject"
 				},
 				{
@@ -897,7 +923,170 @@
 			]
 		},
 		"preprocessor": {
-			"patterns": []
+			"patterns": [
+				{
+					"include": "#preprocessor-if"
+				},
+				{
+					"include": "#preprocessor-ifdef"
+				},
+				{
+					"include": "#preprocessor-include"
+				},
+				{
+					"include": "#preprocessor-define"
+				},
+				{
+					"include": "#preprocessor-macro"
+				}
+			]
+		},
+		"preprocessor-include": {
+			"patterns": [
+				{
+					"match": "^\\s*(#include|#includeoptional)\\s+(.+)",
+					"name": "meta.preprocessor.include.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.include.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.include.file.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"preprocessor-define": {
+			"patterns": [
+				{
+					"match": "^\\s*(#define)\\s+([^\\s]+)\\s+(.*)",
+					"name": "meta.preprocessor.include.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.define.ls1"
+						},
+						"2": {
+							"name": "entity.name.function.preprocessor.ls1"
+						},
+						"3": {
+							"name": "entity.name.function.call.ls1",
+							"patterns": [
+								{
+									"include": "#statement"
+								},
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		"preprocessor-if": {
+			"begin": "(?=^\\s*#if\\b)",
+			"end": "(^\\s*#endif)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endif.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^\\s*(#if)\\b\\s+(.+)\\s+",
+					"name": "meta.preprocessor.if.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.if.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.if.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				},
+				{
+					"include": "#preprocessor"
+				}
+			]
+		},
+		"preprocessor-ifdef": {
+			"begin": "(?=^\\s*#if(n)?def\\b)",
+			"end": "(^\\s*#endif)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endif.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^\\s*(#if(n)?def)\\s+(.+)",
+					"name": "meta.preprocessor.ifdef.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.ifdef.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.ifdef.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				},
+				{
+					"include": "#preprocessor"
+				}
+			]
+		},
+		"preprocessor-macro": {
+			"begin": "(?=^#macro\\b)",
+			"end": "(^#endmac)",
+			"endCaptures": {
+				"0": {
+					"name": "keyword.preprocessor.endmac.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"match": "^(#macro)\\b\\s+(.+)\\s+",
+					"name": "meta.preprocessor.macro.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.preprocessor.macro.ls1"
+						},
+						"2": {
+							"name": "meta.preprocessor.macro.expression.ls1",
+							"patterns": [
+								{
+									"include": "#expression"
+								}
+							]
+						}
+					}
+				},
+				{
+					"include": "#statement"
+				}
+			]
 		},
 		"parenthesized-parameter-list": {
 			"begin": "(\\()",
@@ -948,6 +1137,9 @@
 			"patterns": [
 				{
 					"include": "#string"
+				},
+				{
+					"include": "#escape"
 				},
 				{
 					"include": "#comment"
@@ -1041,17 +1233,41 @@
 		},
 		"string": {
 			"name": "string.quoted.double.ls1",
-			"begin": "\"",
-			"end": "\"",
+			"begin": "(\")",
+			"end": "(\")",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.cpp"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.cpp"
+				}
+			},
 			"patterns": [
 				{
-					"name": "constant.character.escape.ls1",
-					"match": "\\\\."
+					"include": "#line_continuation_character"
+				},
+				{
+					"include": "#escape"
 				},
 				{
 					"include": "#datasequence"
 				}
 			]
+		},
+		"escape": {
+			"patterns": [
+				{
+				"name": "constant.character.escape.ls1",
+				"match": "\\\\."
+				}
+			]
+		},
+		"line_continuation_character": {
+			"match": "\\\\\\n",
+			"name": "constant.character.escape.line-continuation.cpp"
 		}
 	},
 	"fileTypes": [
