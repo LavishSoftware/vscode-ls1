@@ -16,9 +16,3 @@ Requires [Visual Studio Code](https://code.visualstudio.com), a free and open so
 
 For other editors, use the **syntaxes/ls1.tmLanguage.json** file
 
-## Release Notes
-
-### 0.2.2
-
-*
-

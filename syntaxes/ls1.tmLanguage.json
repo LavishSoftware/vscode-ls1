@@ -728,19 +728,8 @@
 					"begin": "(^\\s*([^\\$:]+):)",
 					"beginCaptures": {
 						"1": {
-							"name": "meta.method-command.beginning-1.ls1",
-							"patterns": [
-								{
-									"include": "#datasequenceinner-toplevelobject"
-								},
-								{
-									"include": "#datasequence"
-								},
-								{
-									"include": "#datasequence-inner"
-								}
-							]
-								}
+							"name": "meta.method-command.beginning-1.ls1"
+						}
 					},
 					"end": "$",
 					"name": "meta.method-command.ls1",
@@ -967,6 +956,52 @@
 				}
 			]
 		},
+		"preprocessor-shrinkwrap":{
+			"name": "meta.shrinkwrap.ls1",
+			"begin": "(\\$\\$\\>)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.begin.ls1"
+				}
+			},
+			"end": "(\\<\\$\\$)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.end.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#datasequence"
+				},
+				{
+					"include": "#string"
+				}
+			]
+		},
+		"preprocessor-shrinkwrap2":{
+			"name": "meta.shrinkwrap.ls1",
+			"begin": "(\\$\\$\\[)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.begin.ls1"
+				}
+			},
+			"end": "(\\]\\$\\$)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.end.ls1"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#datasequence"
+				},
+				{
+					"include": "#string"
+				}
+			]
+		},
 		"preprocessor-include": {
 			"patterns": [
 				{
@@ -1186,6 +1221,12 @@
 				},
 				{
 					"include": "#unquoted-text"
+				},
+				{
+					"include":"#preprocessor-shrinkwrap"
+				},
+				{
+					"include":"#preprocessor-shrinkwrap2"
 				}
 			]
 		},
@@ -1280,6 +1321,12 @@
 				},
 				{
 					"include": "#datasequence"
+				},
+				{
+					"include":"#preprocessor-shrinkwrap"
+				},
+				{
+					"include":"#preprocessor-shrinkwrap2"
 				}
 			]
 		},
