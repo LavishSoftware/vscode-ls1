@@ -728,7 +728,18 @@
 					"begin": "(^\\s*([^\\$:]+):)",
 					"beginCaptures": {
 						"1": {
-							"name": "meta.method-command.beginning-1.ls1"
+							"name": "meta.method-command.beginning-1.ls1",
+							"patterns": [
+								{
+									"include": "#datasequenceinner-toplevelobject"
+								},
+								{
+									"include": "#datasequence"
+								},
+								{
+									"include": "#datasequence-inner"
+								}
+							]									
 						}
 					},
 					"end": "$",

@@ -1,8 +1,13 @@
 # Change Log
 All notable changes to the "ls1" extension will be documented in this file.
 
+## [0.2.4]
+- Fixed highlighting of method-commands
+
+
 ## [0.2.3]
 - Added support for `$$> <$$` and `$$[ ]$$` sequences
+
 
 ## [0.2.2]
 ### Added
