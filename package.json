@@ -62,6 +62,10 @@
 			{
 				"fileMatch": "isboxer2Module.json",
 				"url": "http://www.lavishsoft.com/schema/isboxer2Module.json"
+			},
+			{
+				"fileMatch": "agent.json",
+				"url": "http://www.lavishsoft.com/schema/agent.json"
 			}
 		]
 	},
