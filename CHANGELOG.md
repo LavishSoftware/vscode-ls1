@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "ls1" extension will be documented in this file.
 
+## [0.2.6]
+- Added support for functions that return a specified type
+
+
 ## [0.2.5]
 - Added support for static members and static methods
 

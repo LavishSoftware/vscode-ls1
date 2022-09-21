@@ -252,12 +252,22 @@
 			"name": "meta.function.ls1",
 			"patterns": [
 				{
-					"begin": "(?x)\n^\\s*\\b(function)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"begin": "(?x)\n^\\s*\\b(function((\\:)(@?[_[:alpha:]][_[:alnum:]]*))?)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.function.ls1"
 						},
 						"2": {
+							"name": "punctuation.separator.colon.ls1"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#type"
+								}
+							]
+						},
+						"5": {
 							"name": "entity.name.function.ls1"
 						}
 					},
