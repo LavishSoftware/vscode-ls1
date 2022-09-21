@@ -205,6 +205,12 @@
 					"include": "#method-declaration"
 				},
 				{
+					"include": "#static-member-declaration"
+				},
+				{
+					"include": "#static-method-declaration"
+				},
+				{
 					"include": "#function-declaration"
 				}
 			]
@@ -391,6 +397,110 @@
 			"patterns": [
 				{
 					"begin": "(?x)\n^\\s*\\b(member((\\:)(@?[_[:alpha:]][_[:alnum:]]*))?)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.member.ls1"
+						},
+						"2": {
+							"name": "punctuation.separator.colon.ls1"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#type"
+								}
+							]
+						},
+						"5": {
+							"name": "entity.name.function.ls1"
+						}
+					},
+					"end": "(?=\\{)",
+					"patterns": [
+						{
+							"include": "#comment"
+						},
+						{
+							"include": "#parenthesized-parameter-list"
+						}
+					]
+				},
+				{
+					"begin": "\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.open.ls1"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.close.ls1"
+						}
+					},
+					"name": "meta.member.block.ls1",
+					"patterns": [
+						{
+							"include": "#statement"
+						}
+					]
+				}
+			]
+		},
+		"static-method-declaration": {
+			"begin": "(?=^\\s*\\bstatic\\smethod\\b)",
+			"end": "(?<=\\})",
+			"name": "meta.method.ls1",
+			"patterns": [
+				{
+					"begin": "(?x)\n^\\s*\\b(static\\smethod)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.other.method.ls1"
+						},
+						"2": {
+							"name": "entity.name.function.ls1"
+						}
+					},
+					"end": "(?=\\{)",
+					"patterns": [
+						{
+							"include": "#comment"
+						},
+						{
+							"include": "#parenthesized-parameter-list"
+						}
+					]
+				},
+				{
+					"begin": "\\{",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.open.ls1"
+						}
+					},
+					"end": "\\}",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.curlybrace.close.ls1"
+						}
+					},
+					"name": "meta.method.block.ls1",
+					"patterns": [
+						{
+							"include": "#statement"
+						}
+					]
+				}
+			]
+		},
+		"static-member-declaration": {
+			"begin": "(?=^\\s*\\bstatic\\smember\\b)",
+			"end": "(?<=\\})",
+			"name": "meta.member.ls1",
+			"patterns": [
+				{
+					"begin": "(?x)\n^\\s*\\b(static\\smember((\\:)(@?[_[:alpha:]][_[:alnum:]]*))?)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.member.ls1"
@@ -1281,7 +1391,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.ls1",
-					"match": "\\b(variable|if|else|elseif|do|while|for|return|inherits|method|member)\\b"
+					"match": "\\b(variable|if|else|elseif|do|while|for|return|inherits|method|member|static)\\b"
 				},
 				{
 					"name": "constant.language.true.ls1",

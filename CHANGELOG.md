@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "ls1" extension will be documented in this file.
 
+## [0.2.5]
+- Added support for static members and static methods
+
+
 ## [0.2.4]
 - Fixed highlighting of method-commands
 
