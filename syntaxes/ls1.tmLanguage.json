@@ -1010,22 +1010,28 @@
 		"datasequenceinner-toplevelobject": {
 			"begin": "(?=^\\s*\\S)",
 			"name": "meta.datasequenceinner-toplevelobject.ls1",
-			"end": "(?=$|[:\\[\\.\\}\\(\\$])",
+			"end": "(?=$|[:\\[\\.\\}\\(])",
 			"patterns": [
 				{
 					"match": "([^:\\[\\.\\}\\(\\$]+)",
 					"name": "entity.name.variable.ls1"
+				},
+				{
+					"include":"#datasequence"
 				}
 			]
 		},
 		"datasequence-toplevelobject": {
 			"begin": "(?<=\\$\\{)",
 			"name": "meta.datasequence-toplevelobject.ls1",
-			"end": "(?=$|[:\\[\\.\\}\\)\\$\\(])",
+			"end": "(?=$|[:\\[\\.\\}\\)\\(])",
 			"patterns": [
 				{
 					"match": "([^:\\[\\.\\}\\$\\(]+)",
 					"name": "entity.name.variable.ls1"
+				},
+				{
+					"include":"#datasequence"
 				}
 			]
 		},
@@ -1036,13 +1042,16 @@
 					"name": "punctuation.accessor.ls1"
 				}
 			},
-			"end": "(?=$|[:\\[\\.\\}\\$\\(])",
+			"end": "(?=$|[:\\[\\.\\}\\(])",
 			"name": "meta.datasequence-member.ls1",
 			"contentName": "meta.datasequence-member.content.ls1",
 			"patterns": [
 				{
 					"match": "[^:\\[\\.\\}\\$\\(]+",
 					"name": "entity.name.function.ls1"
+				},
+				{
+					"include":"#datasequence"
 				}
 			]
 		},
@@ -1053,13 +1062,16 @@
 					"name": "punctuation.accessor.ls1"
 				}
 			},
-			"end": "(?=$|[:\\[\\.\\}\\$\\(])",
+			"end": "(?=$|[:\\[\\.\\}\\(])",
 			"name": "meta.datasequence-method.ls1",
 			"contentName": "meta.datasequence-method.content.ls1",
 			"patterns": [
 				{
 					"match": "[^:\\[\\.\\}\\$\\(]+",
 					"name": "entity.name.function.ls1"
+				},
+				{
+					"include":"#datasequence"
 				}
 			]
 		},
