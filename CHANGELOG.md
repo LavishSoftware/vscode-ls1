@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "ls1" extension will be documented in this file.
 
+## [0.2.7]
+- Added support for static objectdef
+- Added support for static variable
+- Added support for atom with return type
+- Fixed nested data sequences
+
+
 ## [0.2.6]
 - Added support for functions that return a specified type
 
