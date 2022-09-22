@@ -28,12 +28,12 @@
 			"patterns": [
 				{
 					"name": "keyword.control.ls1",
-					"match": "\\b(objectdef)\\b"
+					"match": "\\b(objectdef|static objectdef)\\b"
 				}
 			]
 		},
 		"objectdef-declaration": {
-			"begin": "(?=^\\s*\\bobjectdef\\b)",
+			"begin": "(?=^\\s*\\bobjectdef|static objectdef\\b)",
 			"end": "(?<=\\})",
 			"endCaptures": {
 				"0": {
@@ -43,7 +43,7 @@
 			"name": "meta.objectdef.ls1",
 			"patterns": [
 				{
-					"begin": "(?x)\n\\s*\\b(objectdef)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"begin": "(?x)\n\\s*\\b(objectdef|static objectdef)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.class.ls1"
@@ -199,6 +199,9 @@
 					"include": "#variable-declaration"
 				},
 				{
+					"include": "#static-variable-declaration"
+				},
+				{
 					"include": "#member-declaration"
 				},
 				{
@@ -215,12 +218,43 @@
 				}
 			]
 		},
+		"static-variable-declaration": {
+			"begin": "(?=^\\s*\\bstatic variable\\b)",
+			"end": "$",
+			"patterns": [
+				{
+					"match": "^\\s*\\b(static variable)\\b(\\(global\\)|\\(globalkeep\\)|\\(script\\)|\\(static\\)|\\(object\\))?\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*(\\:(@?[_[:alpha:]][_[:alnum:]]*))?)\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*)",
+					"name": "meta.variable.ls1",
+					"captures": {
+						"1": {
+							"name": "keyword.other.variable.ls1"
+						},
+						"2": {
+							"name": "keyword.control.variablescope.ls1"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#type"
+								}
+							]
+						},
+						"6": {
+							"name": "entity.name.variable.ls1"
+						}
+					}
+				},
+				{
+					"include": "#variable-initializer"
+				}
+			]
+		},
 		"variable-declaration": {
 			"begin": "(?=^\\s*\\bvariable\\b)",
 			"end": "$",
 			"patterns": [
 				{
-					"match": "^\\s*\\b(variable)\\b(\\(global\\)|\\(globalkeep\\)|\\(script\\)|\\(object\\))?\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*(\\:(@?[_[:alpha:]][_[:alnum:]]*))?)\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*)",
+					"match": "^\\s*\\b(variable)\\b(\\(global\\)|\\(globalkeep\\)|\\(script\\)|\\(static\\)|\\(object\\))?\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*(\\:(@?[_[:alpha:]][_[:alnum:]]*))?)\\s+\\b(@?[_[:alpha:]][_[:alnum:]]*)",
 					"name": "meta.variable.ls1",
 					"captures": {
 						"1": {
@@ -309,7 +343,7 @@
 			"name": "meta.atom.ls1",
 			"patterns": [
 				{
-					"begin": "(?x)\n^\\s*\\b(atom)\\b(\\(global\\)|\\(globalkeep\\)|\\(script\\)|\\(object\\))?\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"begin": "(?x)\n^\\s*\\b(atom)\\b(\\(global\\)|\\(globalkeep\\)|\\(script\\)|\\(object\\))?((\\:)(@?[_[:alpha:]][_[:alnum:]]*))?\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.atom.ls1"
@@ -318,6 +352,16 @@
 							"name": "keyword.control.atomscope.ls1"
 						},
 						"3": {
+							"name": "punctuation.separator.colon.ls1"
+						},
+						"5": {
+							"patterns": [
+								{
+									"include": "#type"
+								}
+							]
+						},
+						"6": {
 							"name": "entity.name.function.ls1"
 						}
 					},
