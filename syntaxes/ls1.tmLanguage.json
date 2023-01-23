@@ -43,12 +43,15 @@
 			"name": "meta.objectdef.ls1",
 			"patterns": [
 				{
-					"begin": "(?x)\n\\s*\\b(objectdef|static objectdef)\\b\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
+					"begin": "(?x)\n\\s*\\b(objectdef|static objectdef)\\b(\\(global\\)||\\(script\\))?\\s+\n(@?[_[:alpha:]][_[:alnum:]]*)\\s*",
 					"beginCaptures": {
 						"1": {
 							"name": "keyword.other.class.ls1"
 						},
-						"2": {
+						"2":{
+							"name":"keyword.control.variablescope.ls1"
+						},
+						"3": {
 							"name": "entity.name.type.class.ls1"
 						}
 					},
